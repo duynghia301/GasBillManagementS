@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Gas Bill Management G14</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">GAS BILL MANAGEMENT</string>
+    <string name="nav_header_subtitle">UEF A02E GROUP 14</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_task">Schedude</string>
+    <string name="menu_customer">Customer</string>
+    <string name="menu_list_customer">Customer List</string>
+    <string name="gas">Update Gas Price </string>
+    <string name="search">Search</string>
+    <string name="addCustomer">Add Customer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="gas_levels">
+        <item>Level 1</item>
+        <item>Level 2</item>
+    </string-array>
+    <string-array name="search_options">
+        <item>Name</item>
+        <item>Address</item>
+    </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

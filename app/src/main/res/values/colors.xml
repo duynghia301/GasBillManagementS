@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gas_primary">#4CAF50</color> <!-- Màu xanh lá cây -->
+    <color name="gas_primary_variant">#388E3C</color>
+    <color name="gas_on_primary">#FFFFFF</color> <!-- Màu trắng cho chữ -->
+
+    <color name="gas_secondary">#FF9800</color> <!-- Màu cam -->
+    <color name="gas_secondary_variant">#F57C00</color>
+    <color name="gas_on_secondary">#FFFFFF</color> <!-- Màu trắng cho chữ -->
+
+    <color name="gas_background">#F5F5F5</color> <!-- Màu nền sáng -->
+    <color name="gas_text">#000000</color> <!-- Màu chữ đen -->
+    <color name="light_blue">#B3E5FC</color> <!-- Màu xanh dương nhạt -->
+    <color name="medium_blue">#81D4FA</color> <!-- Màu xanh dương trung bình -->
+    <color name="blue">#2196F3</color> <!-- Màu xanh dương -->
+    <color name="blue_dark">#1976D2</color> <!-- Màu xanh dương đậm -->
+    <color name="background_dark">#121212</color> <!-- Màu nền tối -->
+
+</resources>
