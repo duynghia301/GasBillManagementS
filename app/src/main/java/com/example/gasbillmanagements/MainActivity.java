@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Cấu hình thanh điều hướng
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home)
+                R.id.nav_home,R.id.nav_settings, R.id.nav_search, R.id.nav_add,R.id.nav_gas,R.id.nav_task,R.id.nav_customer,R.id.nav_ListCustomer)
                 .setOpenableLayout(drawer)
                 .build();
 
