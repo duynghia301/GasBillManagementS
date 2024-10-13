@@ -9,7 +9,7 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:alpha="0.2"
         android:scaleType="fitCenter"
         android:src="@drawable/gasbgg" />
     <!-- Switches for showing/hiding fields -->

@@ -200,7 +200,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllGasLevels() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT ID, GAS_LEVEL_TYPE_NAME FROM gas_level_type", null);
+        return db.rawQuery("SELECT ID, GAS_LEVEL_TYPE_NAME, UNIT_PRICE, MAX_NUM_GAS, RATE_PRICE_FOR_OVER FROM gas_level_type", null);
     }
 
 
@@ -215,7 +215,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
 
-
+    public Cursor getGasLevelDetails(int gasLevelId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_GAS_LEVEL_TYPE + " WHERE " + _ID + " = ?";
+        return db.rawQuery(query, new String[]{String.valueOf(gasLevelId)});
+    }
 
 }
 

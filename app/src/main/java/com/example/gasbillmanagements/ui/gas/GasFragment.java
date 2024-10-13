@@ -1,6 +1,7 @@
 package com.example.gasbillmanagements.ui.gas;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ public class GasFragment extends Fragment {
     private TextView tvGasLevel, tvCurrentPrice;
     private EditText etIncreaseAmount;
     private Button btnIncreasePrice;
+    private ImageButton btnShowDetails;
     private DatabaseHelper databaseHelper;
     private Map<String, Integer> gasLevelMap = new HashMap<>();
     private int currentGasLevelId;
@@ -45,6 +48,7 @@ public class GasFragment extends Fragment {
         etIncreaseAmount = view.findViewById(R.id.et_increase_amount);
         btnIncreasePrice = view.findViewById(R.id.btn_increase_price);
         databaseHelper = new DatabaseHelper(getContext());
+        btnShowDetails = view.findViewById(R.id.btn_show_details);
 
         // Setup gas levels in RadioGroup
         setupRadioGroup();
@@ -61,8 +65,14 @@ public class GasFragment extends Fragment {
 
         // Set up event for "Increase Gas Price" button
         btnIncreasePrice.setOnClickListener(v -> increaseGasPrice());
-//        btnDecreasePrice.setOnClickListener(v -> decreaseGasPrice()); // Thêm sự kiện cho nút giảm giá
 
+
+        btnShowDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showGasDetails(); // Gọi phương thức để hiển thị thông tin chi tiết
+            }
+        });
         return view;
     }
 
@@ -70,8 +80,8 @@ public class GasFragment extends Fragment {
         Cursor cursor = databaseHelper.getAllGasLevels();
         if (cursor != null) {
             try {
-                radioGroupGasLevel.removeAllViews(); // Xóa tất cả các nút RadioButton trước khi thêm mới
-                gasLevelMap.clear(); // Xóa bản đồ để tránh lưu trữ trùng lặp
+                radioGroupGasLevel.removeAllViews(); // Remove all RadioButtons before adding new ones
+                gasLevelMap.clear(); // Clear the map to avoid duplicate storage
 
                 while (cursor.moveToNext()) {
                     int id = cursor.getInt(cursor.getColumnIndexOrThrow("ID"));
@@ -90,32 +100,31 @@ public class GasFragment extends Fragment {
         }
     }
 
-
     private void updateGasInfo(int gasLevelId) {
         double currentPrice = databaseHelper.getCurrentGasPrice(gasLevelId);
-        tvGasLevel.setText("Cấp Gas: " + gasLevelId);
-        tvCurrentPrice.setText("Giá gas hiện tại: " + currentPrice + " VND");
+        tvGasLevel.setText("Gas Level: " + gasLevelId);
+        tvCurrentPrice.setText("Current gas price: " + currentPrice + "$");
     }
 
     private void increaseGasPrice() {
-        // Kiểm tra xem có cấp gas nào được chọn không
+        // Check if any gas level is selected
         int selectedId = radioGroupGasLevel.getCheckedRadioButtonId();
         if (selectedId == -1) {
-            showAlertDialog("Thông báo", "Vui lòng chọn cấp gas trước khi tăng giá");
+            showAlertDialog("Notice", "Please select a gas level before increasing the price");
             return;
         }
 
         String increaseAmountStr = etIncreaseAmount.getText().toString();
 
         if (increaseAmountStr.isEmpty()) {
-            showAlertDialog("Thông báo", "Vui lòng nhập số tiền tăng giá gas");
+            showAlertDialog("Notice", "Please enter the price increase amount");
             return;
         }
 
         try {
             double increaseAmount = Double.parseDouble(increaseAmountStr);
             if (increaseAmount <= 0) {
-                showAlertDialog("Thông báo", "Số tiền tăng giá phải lớn hơn 0");
+                showAlertDialog("Notice", "The increase amount must be greater than 0");
                 return;
             }
 
@@ -124,61 +133,71 @@ public class GasFragment extends Fragment {
             boolean isUpdated = databaseHelper.updateGasPrice(currentGasLevelId, increaseAmount);
 
             if (isUpdated) {
-                showAlertDialog("Thông báo", "Cập nhật giá gas thành công");
+                showAlertDialog("Notice", "Gas price updated successfully");
                 updateGasInfo(currentGasLevelId);
                 etIncreaseAmount.setText("");
             } else {
-                showAlertDialog("Thông báo", "Cập nhật giá gas thất bại");
+                showAlertDialog("Notice", "Failed to update gas price");
             }
         } catch (NumberFormatException e) {
-            showAlertDialog("Thông báo", "Số tiền tăng giá không hợp lệ");
+            showAlertDialog("Notice", "Invalid price increase amount");
         } catch (Exception e) {
             e.printStackTrace();
-            showAlertDialog("Thông báo", "Có lỗi xảy ra. Vui lòng thử lại sau.");
+            showAlertDialog("Notice", "An error occurred. Please try again later.");
         }
     }
 
-    // Phương thức giảm giá gas
-//    private void decreaseGasPrice() {
-//        // Kiểm tra xem có cấp gas nào được chọn không
-//        int selectedId = radioGroupGasLevel.getCheckedRadioButtonId();
-//        if (selectedId == -1) {
-//            showAlertDialog("Thông báo", "Vui lòng chọn cấp gas trước khi giảm giá");
-//            return;
-//        }
-//
-//        String decreaseAmountStr = etDecreaseAmount.getText().toString();
-//
-//        if (decreaseAmountStr.isEmpty()) {
-//            showAlertDialog("Thông báo", "Vui lòng nhập số tiền giảm giá gas");
-//            return;
-//        }
-//
-//        try {
-//            double decreaseAmount = Double.parseDouble(decreaseAmountStr);
-//            if (decreaseAmount <= 0) {
-//                showAlertDialog("Thông báo", "Số tiền giảm giá phải lớn hơn 0");
-//                return;
-//            }
-//
-//            Log.d("GasFragment", "Decreasing price for Gas Level ID: " + currentGasLevelId + " by amount: " + decreaseAmount);
-//
-//            boolean isUpdated = databaseHelper.decreaseGasPrice(currentGasLevelId, decreaseAmount);
-//
-//            if (isUpdated) {
-//                showAlertDialog("Thông báo", "Cập nhật giá gas thành công");
-//                updateGasInfo(currentGasLevelId);
-//                etDecreaseAmount.setText("");
-//            } else {
-//                showAlertDialog("Thông báo", "Cập nhật giá gas thất bại");
-//            }
-//        } catch (NumberFormatException e) {
-//            showAlertDialog("Thông báo", "Số tiền giảm giá không hợp lệ");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            showAlertDialog("Thông báo", "Có lỗi xảy ra. Vui lòng thử lại sau.");
-//        }
-//    }
+    private void showGasDetails() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Gas Details");
+
+        Cursor cursor = databaseHelper.getAllGasLevels(); // Lấy tất cả các cấp gas
+        StringBuilder details = new StringBuilder();
+
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    int id = cursor.getInt(cursor.getColumnIndexOrThrow("ID"));
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow("GAS_LEVEL_TYPE_NAME"));
+                    double price = cursor.getDouble(cursor.getColumnIndexOrThrow("UNIT_PRICE"));
+                    int maxGas = cursor.getInt(cursor.getColumnIndexOrThrow("MAX_NUM_GAS"));
+                    double rate = cursor.getDouble(cursor.getColumnIndexOrThrow("RATE_PRICE_FOR_OVER"));
+
+                    details.append(name)
+                            .append("          Price: ")
+                            .append(price)
+                            .append("\nMax Gas:    ")
+                            .append(maxGas)
+                            .append("\nRate        :    ")
+                            .append(rate)
+                            .append("\n-----------------------------------------\n");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("GasFragment", "Error retrieving gas details: " + e.getMessage()); // Ghi log lỗi
+                details.append("Error retrieving gas details."); // Thông báo lỗi cho người dùng
+            } finally {
+                cursor.close(); // Đảm bảo rằng bạn luôn đóng cursor
+            }
+        } else {
+            Log.e("GasFragment", "Cursor is null."); // Ghi log nếu cursor là null
+            details.append("No gas levels available."); // Thông báo cho người dùng
+        }
+
+        builder.setMessage(details.toString());
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
+
+
+
+
+
+
     private void showAlertDialog(String title, String message) {
         new AlertDialog.Builder(getContext())
                 .setTitle(title)
