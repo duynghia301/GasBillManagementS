@@ -10,6 +10,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <EditText
+            android:id="@+id/edittext_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Tìm kiếm khách hàng"
+            android:padding="8dp"/>
+
         <ImageButton
             android:id="@+id/button_SearchImage"
             android:layout_width="wrap_content"
@@ -18,14 +26,6 @@
             android:contentDescription="Search Icon"
             android:padding="8dp"
             android:src="@drawable/ic_search" />
-
-        <EditText
-            android:id="@+id/edittext_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Tìm kiếm khách hàng"
-            android:padding="8dp"/>
 
     </LinearLayout>
 

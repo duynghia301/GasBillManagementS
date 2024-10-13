@@ -26,11 +26,11 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/et_year"
+            android:id="@+id/et_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="YYYY" />
+            android:hint="DD" />
 
         <EditText
             android:id="@+id/et_month"
@@ -40,11 +40,12 @@
             android:hint="MM" />
 
         <EditText
-            android:id="@+id/et_day"
+            android:id="@+id/et_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="DD" />
+            android:hint="YYYY" />
+
     </LinearLayout>
 
     <!-- Trường nhập địa chỉ -->

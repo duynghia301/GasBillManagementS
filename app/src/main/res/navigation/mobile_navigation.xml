@@ -1,78 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.gasbillmanagements.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_home_to_customer"
-            app:destination="@id/nav_customer" />
-        <action
-            android:id="@+id/action_home_to_gas"
-            app:destination="@id/nav_gas" />
-        <action
-            android:id="@+id/action_home_to_task"
-            app:destination="@id/nav_task" />
-        <action
-            android:id="@+id/action_home_to_settings"
-            app:destination="@id/nav_settings" />
-        <action
-            android:id="@+id/action_home_to_list_customer"
-            app:destination="@id/nav_ListCustomer" />
-        <action
-            android:id="@+id/action_home_to_add"
-            app:destination="@id/nav_add" />
+        android:label="@string/menu_home">
+        <action android:id="@+id/action_home_to_customer" app:destination="@id/nav_customer" />
+        <action android:id="@+id/action_home_to_gas" app:destination="@id/nav_gas" />
+        <action android:id="@+id/action_home_to_task" app:destination="@id/nav_task" />
+        <action android:id="@+id/action_home_to_settings" app:destination="@id/nav_settings" />
+        <action android:id="@+id/action_home_to_list_customer" app:destination="@id/nav_ListCustomer" />
+        <action android:id="@+id/action_home_to_add" app:destination="@id/nav_add" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_customer"
         android:name="com.example.gasbillmanagements.ui.customer.CustomerFragment"
-        android:label="@string/menu_customer"
-        tools:layout="@layout/fragment_customer" />
+        android:label="@string/menu_customer" />
 
     <fragment
         android:id="@+id/nav_task"
         android:name="com.example.gasbillmanagements.ui.schedude.SchedudeFragment"
-        android:label="@string/menu_task"
-        tools:layout="@layout/fragment_schedude" />
+        android:label="@string/menu_task" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.gasbillmanagements.ui.settings.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="@string/menu_settings" />
 
     <fragment
         android:id="@+id/nav_ListCustomer"
         android:name="com.example.gasbillmanagements.ui.customer.CustomerListFragment"
-        android:label="@string/menu_list_customer"
-        tools:layout="@layout/fragment_customer_list">
-        <action
-            android:id="@+id/action_ListCustomer_to_customer"
-            app:destination="@id/nav_customer" />
+        android:label="@string/menu_list_customer">
+        <action android:id="@+id/action_ListCustomer_to_customer" app:destination="@id/nav_customer" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_gas"
         android:name="com.example.gasbillmanagements.ui.gas.GasFragment"
-        android:label="@string/gas"
-        tools:layout="@layout/fragment_gas" />
+        android:label="@string/gas" />
 
     <fragment
         android:id="@+id/nav_search"
         android:name="com.example.gasbillmanagements.ui.search.SearchFragment"
-        android:label="@string/search"
-        tools:layout="@layout/fragment_search" />
+        android:label="@string/search" />
 
     <fragment
         android:id="@+id/nav_add"
         android:name="com.example.gasbillmanagements.ui.customer.AddCustomerFragment"
-        android:label="@string/addCustomer"
-        tools:layout="@layout/fragment_add_customer" />
+        android:label="@string/addCustomer" />
+
+
 </navigation>

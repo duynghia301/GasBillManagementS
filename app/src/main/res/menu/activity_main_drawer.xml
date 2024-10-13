@@ -16,5 +16,21 @@
             android:id="@+id/nav_task"
             android:icon="@drawable/ic_task"
             android:title="@string/menu_task" />
+        <item
+            android:id="@+id/nav_gas"
+            android:icon="@drawable/ic_gas"
+            android:title="@string/gas" />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add"
+            android:title="@string/addCustomer" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search"
+            android:title="@string/search" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_setting"
+            android:title="@string/menu_settings" />
     </group>
 </menu>

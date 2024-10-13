@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 //        databaseHelper.insertGasLevelType("Level1", 1000, 50, 1.5f);
 //        databaseHelper.insertGasLevelType("Level2", 2000, 100, 1.8f);
 //
-// Thêm dữ liệu vào bảng customer
+//// Thêm dữ liệu vào bảng customer
 //        databaseHelper.insertCustomer("Ramesh", "202401", "Ahmedabad", 2000, 1);
 //        databaseHelper.insertCustomer("Khilan", "202401", "Delhi", 1500, 2);
 //        databaseHelper.insertCustomer("Kaushik", "202402", "Kota", 2000, 1);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Cấu hình thanh điều hướng
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_task, R.id.nav_ListCustomer)
+                R.id.nav_home)
                 .setOpenableLayout(drawer)
                 .build();
 
