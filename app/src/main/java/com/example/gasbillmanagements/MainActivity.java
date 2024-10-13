@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.gasbillmanagements.database.DatabaseHelper;
 import com.example.gasbillmanagements.ultils.MusicPlayer;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 //        databaseHelper.insertGasLevelType("Level1", 1000, 50, 1.5f);
 //        databaseHelper.insertGasLevelType("Level2", 2000, 100, 1.8f);
 //
-//// Thêm dữ liệu vào bảng customer
+// Thêm dữ liệu vào bảng customer
 //        databaseHelper.insertCustomer("Ramesh", "202401", "Ahmedabad", 2000, 1);
 //        databaseHelper.insertCustomer("Khilan", "202401", "Delhi", 1500, 2);
 //        databaseHelper.insertCustomer("Kaushik", "202402", "Kota", 2000, 1);
@@ -74,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
                     navController.navigate(R.id.nav_search);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        binding.appBarMain.fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+                    navController.navigate(R.id.nav_add);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -153,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (musicPlayerService != null && getMusicSetting()) {
-            musicPlayerService.playMusic(); // Tiếp tục phát nhạc nếu cài đặt đang bật
+            musicPlayerService.playMusic();
         }
     }
 

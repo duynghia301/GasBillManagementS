@@ -6,6 +6,13 @@
     android:padding="8dp">
 
 
+    <TextView
+    android:id="@+id/textview_id"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="12sp"
+    android:layout_marginEnd="8dp"
+    android:gravity="left|center" />
 
     <TextView
     android:id="@+id/textview_name"
@@ -21,7 +28,7 @@
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:textSize="14sp"
-    android:gravity="center"
+    android:gravity="left|center"
     android:layout_weight="1" />
 
 </LinearLayout>

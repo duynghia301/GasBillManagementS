@@ -23,5 +23,6 @@
     <color name="blue">#2196F3</color> <!-- Màu xanh dương -->
     <color name="blue_dark">#1976D2</color> <!-- Màu xanh dương đậm -->
     <color name="background_dark">#121212</color> <!-- Màu nền tối -->
-
+    <color name="gray">#020202</color>
+<color name="light_gray">#EFEEEE</color>"
 </resources>

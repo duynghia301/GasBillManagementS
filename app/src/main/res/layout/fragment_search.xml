@@ -68,13 +68,21 @@
 
         <!-- TextView cho tiêu đề Name -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="left|center"
+            android:text="ID"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Name"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="left"/>
+            android:gravity="left|center"/>
 
         <!-- TextView cho tiêu đề Address -->
         <TextView
@@ -84,7 +92,7 @@
             android:text="Address"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="left|center"/>
     </LinearLayout>
 
     <ListView

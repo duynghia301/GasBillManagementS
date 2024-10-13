@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selection = "NAME LIKE ? OR ADDRESS LIKE ?";
         String[] selectionArgs = new String[]{"%" + query + "%", "%" + query + "%"};
         // Sử dụng DISTINCT để loại bỏ bản ghi trùng lặp
-        String sql = "SELECT DISTINCT ID AS _id, NAME, ADDRESS FROM " + TABLE_CUSTOMER + " WHERE " + selection;
+        String sql = "SELECT DISTINCT ID AS _id, NAME, ADDRESS,YYYYMM, USED_NUM_GAS, GAS_LEVEL_TYPE_ID  FROM " + TABLE_CUSTOMER + " WHERE " + selection;
         return db.rawQuery(sql, selectionArgs);
     }
 
@@ -103,24 +103,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllCustomers() {
         SQLiteDatabase db = this.getReadableDatabase();
         // Đổi tên cột ID thành _id để tương thích với SimpleCursorAdapter
-        return db.rawQuery("SELECT ID AS _id, NAME, ADDRESS FROM " + TABLE_CUSTOMER, null);
+        return db.rawQuery("SELECT ID AS _id, NAME, ADDRESS,YYYYMM, USED_NUM_GAS, GAS_LEVEL_TYPE_ID FROM " + TABLE_CUSTOMER, null);
     }
-    public Cursor getAllCustomersA() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER, null);
-    }
-    public Cursor searchCustomersA(String query) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER + " WHERE NAME LIKE ?", new String[]{"%" + query + "%"}); // Kiểm tra tên bảng
-    }
+
+
 
     public Cursor getCustomerById(int _id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selection = "ID = ?";
-        String[] selectionArgs = {String.valueOf(_id)}; // Đã sửa
-        String sql = "SELECT DISTINCT ID AS _id, NAME, ADDRESS FROM " + TABLE_CUSTOMER + " WHERE " + selection;
-        return db.rawQuery(sql, selectionArgs);
+        String[] selectionArgs = {String.valueOf(_id)};
+
+        Cursor cursor = db.query(TABLE_CUSTOMER, null, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            Log.d("DatabaseHelper", "Customer found: " + cursor.getString(cursor.getColumnIndexOrThrow("NAME")));
+        } else {
+            Log.d("DatabaseHelper", "No customer found for ID: " + _id);
+        }
+
+        return cursor;
     }
+
+
 
     public Cursor searchCustomersByNameAndAddress(String query) {
         SQLiteDatabase db = this.getReadableDatabase();

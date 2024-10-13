@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gasbillmanagements.R;
 import com.example.gasbillmanagements.database.DatabaseHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SearchFragment extends Fragment {
 
@@ -36,6 +37,9 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
 
         editTextSearch = view.findViewById(R.id.edittext_search);
         listViewResults = view.findViewById(R.id.listview_results);
@@ -87,8 +91,8 @@ public class SearchFragment extends Fragment {
                         getActivity(),
                         R.layout.list_item,
                         cursor,
-                        new String[]{"NAME", "ADDRESS"},
-                        new int[]{R.id.textview_name, R.id.textview_address},
+                        new String[]{"_id","NAME","ADDRESS"},
+                        new int[]{R.id.textview_id,R.id.textview_name, R.id.textview_address},
                         0);
 
                 listViewResults.setAdapter(adapter);
@@ -107,13 +111,18 @@ public class SearchFragment extends Fragment {
                     getActivity(),
                     R.layout.list_item,
                     cursor,
-                    new String[]{"NAME", "ADDRESS"},
-                    new int[]{R.id.textview_name, R.id.textview_address},
+                    new String[]{"_id","NAME","ADDRESS"},
+                    new int[]{R.id.textview_id,R.id.textview_name, R.id.textview_address},
                     0);
 
             listViewResults.setAdapter(adapter);
         } else {
             Toast.makeText(getActivity(), "Không tìm thấy khách hàng nào", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void onPause() {
+        super.onPause();
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
+        fab.setVisibility(View.VISIBLE);
     }
 }

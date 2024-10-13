@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gasbillmanagements.R;
 import com.example.gasbillmanagements.ultils.MusicPlayer;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SettingsFragment extends Fragment {
     private Switch switchPlayMusic;
@@ -55,6 +56,10 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+
         switchPlayMusic = view.findViewById(R.id.switch_play_music);
 
         // Lấy cài đặt âm nhạc và cập nhật trạng thái của switch
@@ -123,4 +128,9 @@ public class SettingsFragment extends Fragment {
             isBound = false;
         }
     };
+    public void onPause() {
+        super.onPause();
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
+        fab.setVisibility(View.VISIBLE);
+    }
 }

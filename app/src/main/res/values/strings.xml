@@ -15,7 +15,7 @@
     <string name="gas">Update Gas Price </string>
     <string name="search">Search</string>
     <string name="addCustomer">Add Customer</string>
-
+    <string name="menu_settings">Settings</string>"
     <!-- TODO: Remove or change this placeholder text -->
 
     <string-array name="gas_levels">
