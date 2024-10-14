@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,9 +53,28 @@ public class CustomerFragment extends Fragment {
         // Hiển thị thông tin chi tiết của customer
         displayCustomerDetails(customerId);
 
+
+        ImageButton editButton = view.findViewById(R.id.imageButton);
+        editButton.setOnClickListener(v -> openEditCustomerFragment());
+
         return view;
     }
+    private void openEditCustomerFragment() {
+        EditCustomer editCustomerFragment = EditCustomer.newInstance(
+                customerId, // Pass the customer ID
+                tvName.getText().toString(), // Pass the name
+                tvAddress.getText().toString(), // Pass the address
+                tvBirth.getText().toString(), // Pass the birth date
+                tvUsedNumGas.getText().toString(), // Pass the used gas
+                tvGasLevel.getText().toString() // Pass the gas level
+        );
 
+        // Navigate to EditCustomer fragment
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.action_detailCustomer_to_edit, editCustomerFragment) // Replace with the ID of your fragment container
+                .addToBackStack(null)
+                .commit();
+    }
 
     private void displayCustomerDetails(int customerId) {
         Cursor cursor = null;

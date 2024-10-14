@@ -179,6 +179,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean updateCustomer(int customerId, String name, String address, String birth, String usedNumGas, String gasLevel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("NAME", name);
+        contentValues.put("ADDRESS", address);
+        contentValues.put("YYYYMM", birth);
+        contentValues.put("USED_NUM_GAS", usedNumGas);
+        contentValues.put("GAS_LEVEL_TYPE_ID", gasLevel);
+
+        int result = db.update("CUSTOMER_TABLE", contentValues, "ID = ?", new String[]{String.valueOf(customerId)});
+        return result > 0; // Returns true if at least one row was updated
+    }
 
 
 

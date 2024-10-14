@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.customer.EditCustomer">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:alpha="0.2"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gasbgg" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Name"
+        android:textColor="#000000"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/et_birth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_name"
+        android:layout_marginBottom="16dp"
+        android:hint="Ngày sinh"
+        android:textColor="#000000"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_birth"
+        android:layout_marginBottom="16dp"
+        android:hint="Địa chỉ"
+        android:textColor="#000000"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/et_used_num_gas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_address"
+        android:layout_marginBottom="16dp"
+        android:hint="Số lượng gas đã sử dụng"
+        android:textColor="#000000"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/et_gas_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_used_num_gas"
+        android:layout_marginBottom="32dp"
+        android:hint="Cấp gas"
+        android:textColor="#000000"
+        android:textSize="23sp" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:text="Save"
+        android:backgroundTint="#4B9EE9"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+</RelativeLayout>

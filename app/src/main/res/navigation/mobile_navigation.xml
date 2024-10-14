@@ -53,5 +53,10 @@
         android:name="com.example.gasbillmanagements.ui.customer.AddCustomerFragment"
         android:label="@string/addCustomer" />
 
-
+<fragment
+    android:id="@+id/nav_edit"
+    android:name="com.example.gasbillmanagements.ui.customer.EditCustomer"
+    android:label="@string/edit">
+    <action android:id="@+id/action_detailCustomer_to_edit"/>
+</fragment>
 </navigation>
