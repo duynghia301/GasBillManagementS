@@ -68,8 +68,15 @@ public class AddCustomerFragment extends Fragment {
         String address = etAddress.getText().toString().trim();
         String usedNumGasStr = etUsedNumGas.getText().toString().trim();
 
+        // Check if all fields have been filled
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(dateOfBirth) || TextUtils.isEmpty(address) || TextUtils.isEmpty(usedNumGasStr)) {
-            showAlertDialog("Thông báo", "Vui lòng điền đầy đủ thông tin.");
+            showAlertDialog("Notification", "Please fill in all the information.");
+            return;
+        }
+
+        // Check if the user has selected a gas level
+        if (radioGroupGasLevel.getCheckedRadioButtonId() == -1) {
+            showAlertDialog("Notification", "Please select a gas level.");
             return;
         }
 
@@ -77,16 +84,27 @@ public class AddCustomerFragment extends Fragment {
         try {
             usedNumGas = Integer.parseInt(usedNumGasStr);
         } catch (NumberFormatException e) {
-            showAlertDialog("Thông báo", "Số lượng gas không hợp lệ!");
+            showAlertDialog("Notification", "Invalid gas amount!");
             return;
         }
 
+        // Get the ID of the selected gas level
         int selectedGasLevelId = radioGroupGasLevel.getCheckedRadioButtonId() == R.id.radio_level_1 ? 1 : 2;
 
-        databaseHelper.insertCustomer(name, dateOfBirth, address, usedNumGas, selectedGasLevelId);
-        showAlertDialog("Thông báo", "Thêm khách hàng thành công!");
-        clearFields();
+        // Show confirmation dialog before saving
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to add this customer?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Insert customer information into the database
+                    databaseHelper.insertCustomer(name, dateOfBirth, address, usedNumGas, selectedGasLevelId);
+                    showAlertDialog("Notification", "Customer added successfully!");
+                    clearFields();
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .show();
     }
+
 
     private void clearFields() {
         etName.setText("");

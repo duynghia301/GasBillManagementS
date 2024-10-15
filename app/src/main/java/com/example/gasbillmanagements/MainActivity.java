@@ -96,9 +96,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    NavController navController =Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
-                    navController.navigate(R.id.nav_add);
-                }catch (Exception e) {
+                    NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+                    int currentDestinationId = navController.getCurrentDestination() != null
+                            ? navController.getCurrentDestination().getId()
+                            : -1;
+
+                    // Kiểm tra xem fragment hiện tại có phải là nav_add hay không
+                    if (currentDestinationId != R.id.nav_add) {
+                        navController.navigate(R.id.nav_add);
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -106,22 +113,21 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = binding.appBarMain.bottomNavigationView;
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
-
-
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (navController.getCurrentDestination() != null
                     && navController.getCurrentDestination().getId() == itemId) {
                 return false;
             }
+
             if (itemId == R.id.nav_home) {
                 navController.navigate(R.id.nav_home);
                 return true;
-            } else if (itemId == R.id.nav_ListCustomer) {
-                navController.navigate(R.id.nav_ListCustomer);
-                return true;
             } else if (itemId == R.id.nav_gas) {
                 navController.navigate(R.id.nav_gas);
+                return true;
+            } else if (itemId == R.id.nav_ListCustomer) {
+                navController.navigate(R.id.nav_ListCustomer);
                 return true;
             } else if (itemId == R.id.nav_settings) {
                 navController.navigate(R.id.nav_settings);
@@ -130,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 

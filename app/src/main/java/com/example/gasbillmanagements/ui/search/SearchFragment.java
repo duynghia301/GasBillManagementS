@@ -46,7 +46,6 @@ public class SearchFragment extends Fragment {
         checkboxSearchName = view.findViewById(R.id.checkbox_search_name);
         checkboxSearchAddress = view.findViewById(R.id.checkbox_search_address);
         buttonSearch = view.findViewById(R.id.button_search);
-        buttonSearchImage = view.findViewById(R.id.button_SearchImage);
         databaseHelper = new DatabaseHelper(getActivity());
 
         // Hiển thị tất cả khách hàng khi fragment được khởi tạo

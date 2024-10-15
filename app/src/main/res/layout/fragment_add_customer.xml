@@ -88,6 +88,7 @@
         android:id="@+id/et_used_num_gas"
         android:layout_width="match_parent"
         android:hint=" Nhập số lượng gas"
+        android:inputType="number"
         android:layout_height="60dp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
