@@ -12,13 +12,12 @@
         android:alpha="0.2"
         android:scaleType="fitCenter"
         android:src="@drawable/gasbgg" />
-    <!-- Switches for showing/hiding fields -->
     <Switch
         android:id="@+id/switch_show_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show Address"
-        android:padding="16dp" /> <!-- Thêm padding để tăng kích thước vùng nhấn -->
+        android:padding="16dp" />
 
     <Switch
         android:id="@+id/switch_show_used_num_gas"
@@ -27,7 +26,7 @@
         android:text="Show Used Gas"
         android:layout_below="@id/switch_show_address"
         android:layout_marginTop="8dp"
-        android:padding="16dp" /> <!-- Thêm padding để tăng kích thước vùng nhấn -->
+        android:padding="16dp" />
 
     <Switch
         android:id="@+id/switch_show_gas_level"
@@ -36,7 +35,7 @@
         android:text="Show Gas Level Type"
         android:layout_below="@id/switch_show_used_num_gas"
         android:layout_marginTop="8dp"
-        android:padding="16dp" /> <!-- Thêm padding để tăng kích thước vùng nhấn -->
+        android:padding="16dp" />
 
     <Switch
         android:id="@+id/switch_show_price"
@@ -45,9 +44,7 @@
         android:text="Show Price"
         android:layout_below="@id/switch_show_gas_level"
         android:layout_marginTop="8dp"
-        android:padding="16dp" /> <!-- Thêm padding để tăng kích thước vùng nhấn -->
-
-    <!-- Music switch -->
+        android:padding="16dp" />
     <Switch
         android:id="@+id/switch_play_music"
         android:layout_width="match_parent"
@@ -55,16 +52,6 @@
         android:text="Play Music"
         android:layout_below="@id/switch_show_price"
         android:layout_marginTop="8dp"
-        android:padding="16dp" /> <!-- Thêm padding để tăng kích thước vùng nhấn -->
-
-    <!-- Optional: Button to save settings -->
-    <Button
-        android:id="@+id/button_save_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save Settings"
-        android:layout_below="@id/switch_play_music"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        android:padding="16dp" />
 
 </RelativeLayout>

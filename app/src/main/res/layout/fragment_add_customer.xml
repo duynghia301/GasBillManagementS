@@ -17,8 +17,14 @@
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập tên khách hàng" />
+        android:hint="Nhập tên khách hàng"
+        android:layout_height="60dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/custom_persom_icom"
+        android:drawablePadding="12dp"
+        android:background="@drawable/custom_input"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,8 +42,13 @@
         <EditText
             android:id="@+id/et_date_of_birth"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:hint="Chọn ngày sinh"
+            android:layout_height="60dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:drawableStart="@drawable/custom_date_icon"
+            android:drawablePadding="12dp"
+            android:background="@drawable/custom_input"
             android:focusable="false"
             android:layout_weight="1" />
 
@@ -50,13 +61,20 @@
         android:text="Địa chỉ:"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginBottom="4dp"
+        />
 
     <EditText
         android:id="@+id/et_address"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập địa chỉ" />
+        android:hint="Nhập địa chỉ"
+        android:layout_height="60dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/custom_location_icon"
+        android:drawablePadding="12dp"
+        android:background="@drawable/custom_input"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,9 +87,14 @@
     <EditText
         android:id="@+id/et_used_num_gas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập số lượng gas đã sử dụng"
-        android:inputType="number" />
+        android:hint=" Nhập số lượng gas"
+        android:layout_height="60dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/custom_usedgas_icom"
+        android:drawablePadding="12dp"
+        android:background="@drawable/custom_input"/>
+
 
     <TextView
         android:layout_width="wrap_content"

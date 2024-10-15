@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.gasbillmanagements.database.DatabaseHelper;
 import com.example.gasbillmanagements.ultils.MusicPlayer;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-//
+
 //// Thêm dữ liệu vào bảng gas_level_type
 //        databaseHelper.insertGasLevelType("Level1", 1000, 50, 1.5f);
 //        databaseHelper.insertGasLevelType("Level2", 2000, 100, 1.8f);
@@ -91,7 +92,44 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        binding.appBarMain.fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    NavController navController =Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+                    navController.navigate(R.id.nav_add);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        BottomNavigationView bottomNavigationView = binding.appBarMain.bottomNavigationView;
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (navController.getCurrentDestination() != null
+                    && navController.getCurrentDestination().getId() == itemId) {
+                return false;
+            }
+            if (itemId == R.id.nav_home) {
+                navController.navigate(R.id.nav_home);
+                return true;
+            } else if (itemId == R.id.nav_ListCustomer) {
+                navController.navigate(R.id.nav_ListCustomer);
+                return true;
+            } else if (itemId == R.id.nav_gas) {
+                navController.navigate(R.id.nav_gas);
+                return true;
+            } else if (itemId == R.id.nav_settings) {
+                navController.navigate(R.id.nav_settings);
+                return true;
+            } else {
+                return false;
+            }
+        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -101,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 .setOpenableLayout(drawer)
                 .build();
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }

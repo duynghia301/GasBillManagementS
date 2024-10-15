@@ -56,13 +56,18 @@
         <EditText
             android:id="@+id/et_increase_amount"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Enter price"
-            android:background="@drawable/edittext_background"
             android:inputType="numberDecimal"
             android:padding="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:layout_height="60dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:drawableStart="@drawable/custom_money_icon"
+            android:drawablePadding="12dp"
+            android:background="@drawable/custom_input"
+            />
 
         <Button
             android:id="@+id/btn_increase_price"

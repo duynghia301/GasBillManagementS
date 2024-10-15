@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/menu_home" />
+    <item
+        android:id="@+id/nav_gas"
+        android:icon="@drawable/ic_gas"
+        android:title="Gas" />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/nav_ListCustomer"
+        android:icon="@drawable/ic_customer"
+        android:title="@string/menu_customer" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/menu_settings" />
+</menu>

@@ -20,8 +20,14 @@
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Name"/>
+        android:layout_height="60dp"
+        android:hint="Enter Name"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/custom_persom_icom"
+        android:drawablePadding="12dp"
+        android:background="@drawable/custom_input"
+        />
 
     <TextView
         android:id="@+id/tv_address"
@@ -34,8 +40,13 @@
     <EditText
         android:id="@+id/et_address"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Address"/>
+        android:layout_height="60dp"
+        android:hint="Enter Address"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/custom_location_icon"
+        android:drawablePadding="12dp"
+        android:background="@drawable/custom_input"/>
 
     <TextView
         android:id="@+id/tv_birth"
@@ -43,17 +54,20 @@
         android:layout_height="wrap_content"
         android:text="Date of Birth:"
         android:textSize="16sp"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="4dp"
+        />
 
     <TextView
         android:id="@+id/et_birth"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:hint="Select Date of Birth"
+        android:drawableStart="@drawable/custom_date_icon"
         android:background="?android:attr/editTextBackground"
         android:padding="8dp"
         android:clickable="true"
-        android:focusable="false"/>
+        android:focusable="false"
+      />
 
     <TextView
         android:id="@+id/tv_used_num_gas"
@@ -66,9 +80,15 @@
     <EditText
         android:id="@+id/et_used_num_gas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Used Number of Gas"
-        android:inputType="number"/>
+
+        android:hint="Enter Used Gas"
+        android:inputType="number"
+        android:layout_height="60dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableStart="@drawable/custom_usedgas_icom"
+        android:drawablePadding="12dp"
+        android:background="@drawable/custom_input"/>
 
     <TextView
         android:id="@+id/tv_gas_level_type"

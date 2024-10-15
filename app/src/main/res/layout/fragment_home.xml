@@ -26,13 +26,19 @@
 
     <GridLayout
         android:id="@+id/grid_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="24dp"
-        android:layout_marginTop="-80dp"
+        android:layout_width="349dp"
+        android:layout_height="337dp"
+        android:layout_below="@+id/view"
+        android:layout_gravity="center"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
         android:columnCount="2"
-        android:rowCount="3"
-        android:layout_below="@+id/view">
+        android:rowCount="2">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardGas"
@@ -127,6 +133,7 @@
             android:foreground="?attr/selectableItemBackground"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -150,7 +157,6 @@
             </LinearLayout>
 
 
-
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -168,6 +174,7 @@
             android:foreground="?attr/selectableItemBackground"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

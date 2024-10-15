@@ -16,16 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Tìm kiếm khách hàng"
-            android:padding="8dp"/>
-
-        <ImageButton
-            android:id="@+id/button_SearchImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="Search Icon"
             android:padding="8dp"
-            android:src="@drawable/ic_search" />
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="12dp"/>
 
     </LinearLayout>
 
@@ -100,5 +93,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/white"/>
+        />
 </LinearLayout>
