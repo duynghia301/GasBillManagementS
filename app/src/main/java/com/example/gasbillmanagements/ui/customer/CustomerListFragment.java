@@ -28,8 +28,6 @@ import com.example.gasbillmanagements.R;
 import com.example.gasbillmanagements.database.DatabaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class CustomerListFragment extends Fragment {

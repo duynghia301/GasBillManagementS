@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "gas_manage.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String TABLE_CUSTOMER = "customer";
     public static final String ID = "ID";
@@ -178,18 +178,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowsAffected > 0; // Trả về true nếu xóa thành công
     }
 
-
-    public boolean updateCustomer(int customerId, String name, String address, String birth, String usedNumGas, String gasLevel) {
+    public boolean updateCustomer(int customerId, String name, String address, String birth, int usedNumGas, int gasLevelTypeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("NAME", name);
-        contentValues.put("ADDRESS", address);
-        contentValues.put("YYYYMM", birth);
-        contentValues.put("USED_NUM_GAS", usedNumGas);
-        contentValues.put("GAS_LEVEL_TYPE_ID", gasLevel);
+        contentValues.put(NAME, name);
+        contentValues.put(ADDRESS, address);
+        contentValues.put(YYYYMM, birth);
+        contentValues.put(USED_NUM_GAS, usedNumGas);
+        contentValues.put(GAS_LEVEL_TYPE_ID, gasLevelTypeId);
 
-        int result = db.update("CUSTOMER_TABLE", contentValues, "ID = ?", new String[]{String.valueOf(customerId)});
-        return result > 0; // Returns true if at least one row was updated
+        int result = db.update(TABLE_CUSTOMER, contentValues, ID + "=?", new String[]{String.valueOf(customerId)});
+        return result > 0; // Return true if the update was successful
+    }
+
+
+
+    public int getCustomerCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_CUSTOMER, null);
+        int count = 0;
+        if (cursor != null) {
+            cursor.moveToFirst();
+            count = cursor.getInt(0);
+            cursor.close();
+        }
+        return count;
+    }
+    public int getFirstCustomerId() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID FROM " + TABLE_CUSTOMER + " ORDER BY ID ASC LIMIT 1", null);
+        int firstId = -1; // Giá trị mặc định nếu không tìm thấy
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                firstId = cursor.getInt(0);
+            }
+            cursor.close();
+        }
+        return firstId;
+    }
+    public int getLastCustomerId() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID FROM " + TABLE_CUSTOMER + " ORDER BY ID DESC LIMIT 1", null);
+        int lastId = -1; // Giá trị mặc định nếu không tìm thấy
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                lastId = cursor.getInt(0);
+            }
+            cursor.close();
+        }
+        return lastId;
+    }
+
+    public Cursor getAllCustomerIds() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT ID FROM " + TABLE_CUSTOMER + " ORDER BY ID", null); // Giả sử bảng là gas_users
     }
 
 
@@ -208,16 +250,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             price = cursor.getDouble(cursor.getColumnIndexOrThrow(UNIT_PRICE));
             cursor.close();
+        } else {
+            Log.e("DatabaseHelper", "No price found for gas level ID: " + gasLevelId);
         }
         return price;
     }
 
-
-
+    // Gọi đến bảng gas_level_type đúng cách
     public Cursor getAllGasLevels() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT ID, GAS_LEVEL_TYPE_NAME, UNIT_PRICE, MAX_NUM_GAS, RATE_PRICE_FOR_OVER FROM gas_level_type", null);
+        return db.rawQuery("SELECT " + _ID + ", GAS_LEVEL_TYPE_NAME, UNIT_PRICE, MAX_NUM_GAS, RATE_PRICE_FOR_OVER FROM " + TABLE_GAS_LEVEL_TYPE, null);
     }
+
 
 
     public boolean updateGasPrice(int gasLevelId, double increaseAmount) {
@@ -236,6 +280,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_GAS_LEVEL_TYPE + " WHERE " + _ID + " = ?";
         return db.rawQuery(query, new String[]{String.valueOf(gasLevelId)});
     }
+
+    public Cursor getGasLevelById(int gasLevelId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = _ID + " = ?";
+        String[] selectionArgs = {String.valueOf(gasLevelId)};
+
+        // Truy vấn để lấy thông tin chi tiết của gas level
+        return db.query(TABLE_GAS_LEVEL_TYPE, null, selection, selectionArgs, null, null, null);
+    }
+
 
 }
 

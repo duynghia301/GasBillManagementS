@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Background shape -->
+    <item>
+        <shape>
+            <corners
+                android:radius="50dp" />
+            <solid android:color="#FDFDFD" />
+        </shape>
+    </item>
 
-    <corners android:bottomLeftRadius="75dp"
-        android:bottomRightRadius="75dp"/>
-    <solid android:color="#1E88E5" />
-</shape>
+    <!-- Bitmap image -->
+    <item>
+
+        <bitmap
+            android:src="@drawable/bg"
+            android:gravity="center"
+            android:tileMode="disabled"
+            />
+    </item>
+</layer-list>

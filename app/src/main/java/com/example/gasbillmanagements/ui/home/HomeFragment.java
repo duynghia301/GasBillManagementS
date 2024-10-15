@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class HomeFragment extends Fragment {
 
+    @Nullable
     private FragmentHomeBinding binding;
 
     @Override
@@ -26,36 +28,31 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Sử dụng binding để ánh xạ các CardView
-        CardView cardHome = binding.cardHome;
+        // Ánh xạ các CardView
         CardView cardCustomer = binding.cardCustomer;
         CardView cardGasLevel = binding.cardGas;
-        CardView cardSchedule = binding.cardSchedule;
         CardView cardAdd = binding.cardAdd;
         CardView cardSettings = binding.cardSettings;
 
         // Thêm sự kiện click cho các CardView
-        cardHome.setOnClickListener(v -> navigateTo(R.id.nav_home));
-        cardCustomer.setOnClickListener(v -> navigateTo(R.id.action_home_to_list_customer));
-        cardGasLevel.setOnClickListener(v -> navigateTo(R.id.action_home_to_gas));
-        cardSchedule.setOnClickListener(v -> navigateTo(R.id.action_home_to_task));
-        cardAdd.setOnClickListener(v -> navigateTo(R.id.action_home_to_add));
-        cardSettings.setOnClickListener(v -> navigateTo(R.id.action_home_to_settings));
+        cardCustomer.setOnClickListener(v -> navigateTo(R.id.nav_ListCustomer));
+        cardGasLevel.setOnClickListener(v -> navigateTo(R.id.nav_gas));
+        cardAdd.setOnClickListener(v -> navigateTo(R.id.nav_add));
+        cardSettings.setOnClickListener(v -> navigateTo(R.id.nav_settings));
 
         return root;
     }
 
-    private void navigateTo(int actionId) {
+    private void navigateTo(int destinationId) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
 
         // Lấy ID của destination hiện tại
-        int currentDestinationId = navController.getCurrentDestination().getId();
+        int currentDestinationId = navController.getCurrentDestination() != null ? navController.getCurrentDestination().getId() : -1;
 
         // Kiểm tra xem có cần điều hướng hay không
-        if (currentDestinationId != actionId) {
-            navController.navigate(actionId);
+        if (currentDestinationId != destinationId) {
+            navController.navigate(destinationId);
         } else {
-            // Nếu đã ở destination này, có thể hiển thị thông báo hoặc không làm gì
             Snackbar.make(binding.getRoot(), "You are already here", Snackbar.LENGTH_SHORT).show();
         }
     }
@@ -63,6 +60,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        binding = null;  // Giải phóng binding
     }
 }

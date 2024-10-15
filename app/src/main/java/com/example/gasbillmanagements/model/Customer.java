@@ -7,7 +7,7 @@ public class Customer {
     public static String ADDRESS;
     public static int USED_NUM_GAS;
     public static int GAS_LEVEL_TYPE_ID;
-
+    public double PRICE;
     public Customer(int id, String name, String yyyymm, String address, int usedNumGas, int gasLevelTypeId) {
         this.ID = id;
         this.NAME = name;

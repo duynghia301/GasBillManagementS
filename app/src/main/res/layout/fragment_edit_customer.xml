@@ -1,79 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.customer.EditCustomer">
+    tools:context=".ui.customer.EditCustomerFragment">
 
+    <!-- TODO: Update blank fragment layout -->
 
-
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.2"
-        android:scaleType="fitCenter"
-        android:src="@drawable/gasbgg" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="Name"
-        android:textColor="#000000"
-        android:textSize="23sp" />
+        android:hint="Enter Name"/>
 
-    <EditText
-        android:id="@+id/et_birth"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_name"
-        android:layout_marginBottom="16dp"
-        android:hint="Ngày sinh"
-        android:textColor="#000000"
-        android:textSize="23sp" />
+        android:text="Address:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:id="@+id/et_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_birth"
-        android:layout_marginBottom="16dp"
-        android:hint="Địa chỉ"
-        android:textColor="#000000"
-        android:textSize="23sp" />
+        android:hint="Enter Address"/>
+
+    <TextView
+        android:id="@+id/tv_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of Birth:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/et_birth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Date of Birth"
+        android:background="?android:attr/editTextBackground"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="false"/>
+
+    <TextView
+        android:id="@+id/tv_used_num_gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Used Number of Gas:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:id="@+id/et_used_num_gas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_address"
-        android:layout_marginBottom="16dp"
-        android:hint="Số lượng gas đã sử dụng"
-        android:textColor="#000000"
-        android:textSize="23sp" />
+        android:hint="Enter Used Number of Gas"
+        android:inputType="number"/>
 
-    <EditText
-        android:id="@+id/et_gas_level"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_gas_level_type"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_used_num_gas"
-        android:layout_marginBottom="32dp"
-        android:hint="Cấp gas"
-        android:textColor="#000000"
-        android:textSize="23sp" />
+        android:text="Select Gas Level Type:"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_gas_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio_level_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 1" />
+
+        <RadioButton
+            android:id="@+id/radio_level_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 2" />
+
+        <!-- Add more RadioButtons as needed -->
+    </RadioGroup>
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
         android:text="Save"
-        android:backgroundTint="#4B9EE9"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+        android:layout_marginTop="16dp"/>
 
-</RelativeLayout>
+
+</LinearLayout>

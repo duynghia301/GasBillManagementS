@@ -14,12 +14,17 @@
         <action android:id="@+id/action_home_to_settings" app:destination="@id/nav_settings" />
         <action android:id="@+id/action_home_to_list_customer" app:destination="@id/nav_ListCustomer" />
         <action android:id="@+id/action_home_to_add" app:destination="@id/nav_add" />
+        <action android:id="@+id/action_home_to_search" app:destination="@id/nav_search" />
+        <action android:id="@+id/action_home_to_edit" app:destination="@id/nav_edit" />
+
     </fragment>
 
     <fragment
         android:id="@+id/nav_customer"
         android:name="com.example.gasbillmanagements.ui.customer.CustomerFragment"
         android:label="@string/menu_customer" />
+    <action
+        android:id="@+id/action_customer_to_edit" app:destination="@id/nav_edit" />
 
     <fragment
         android:id="@+id/nav_task"
@@ -52,6 +57,16 @@
         android:id="@+id/nav_add"
         android:name="com.example.gasbillmanagements.ui.customer.AddCustomerFragment"
         android:label="@string/addCustomer" />
+    <fragment
+        android:id="@+id/nav_edit"
+        android:name="com.example.gasbillmanagements.ui.customer.EditCustomerFragment"
+        android:label="@string/editCustomer">
+        <action
+            android:id="@+id/action_edit_to_customer"
+            app:destination="@id/nav_customer"
+            app:popUpTo="@id/nav_customer"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 <fragment
     android:id="@+id/nav_edit"

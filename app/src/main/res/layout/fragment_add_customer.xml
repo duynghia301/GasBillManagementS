@@ -7,18 +7,26 @@
     android:padding="16dp"
     tools:context=".ui.customer.AddCustomerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên khách hàng:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập tên khách hàng" />
 
-    <!-- Chọn ngày tháng năm sinh -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chọn ngày sinh:" />
+        android:text="Ngày sinh:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,36 +34,38 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/et_day"
+            android:id="@+id/et_date_of_birth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="DD" />
+            android:hint="Chọn ngày sinh"
+            android:focusable="false"
+            android:layout_weight="1" />
 
-        <EditText
-            android:id="@+id/et_month"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="MM" />
-
-        <EditText
-            android:id="@+id/et_year"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="YYYY" />
 
     </LinearLayout>
 
-    <!-- Trường nhập địa chỉ -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Địa chỉ:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
+
     <EditText
         android:id="@+id/et_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập địa chỉ" />
 
-    <!-- Trường nhập số lượng gas đã sử dụng -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số lượng gas đã sử dụng:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
+
     <EditText
         android:id="@+id/et_used_num_gas"
         android:layout_width="match_parent"
@@ -63,11 +73,13 @@
         android:hint="Nhập số lượng gas đã sử dụng"
         android:inputType="number" />
 
-    <!-- RadioGroup cho cấp gas -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chọn cấp gas:" />
+        android:text="Chọn cấp gas:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
 
     <RadioGroup
         android:id="@+id/radio_group_gas_level"
@@ -87,10 +99,10 @@
             android:text="Level 2" />
     </RadioGroup>
 
-    <!-- Nút Lưu -->
     <Button
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu" />
+        android:text="Lưu"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

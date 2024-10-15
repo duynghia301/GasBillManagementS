@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-
+//
 //// Thêm dữ liệu vào bảng gas_level_type
 //        databaseHelper.insertGasLevelType("Level1", 1000, 50, 1.5f);
 //        databaseHelper.insertGasLevelType("Level2", 2000, 100, 1.8f);
