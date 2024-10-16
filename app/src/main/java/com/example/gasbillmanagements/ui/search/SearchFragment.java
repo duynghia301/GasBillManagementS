@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -30,7 +29,7 @@ public class SearchFragment extends Fragment {
     private CheckBox checkboxSearchName;
     private CheckBox checkboxSearchAddress;
     private Button buttonSearch;
-    private ImageButton buttonSearchImage;
+
     @SuppressLint("WrongViewCast")
     @Nullable
     @Override
@@ -48,12 +47,11 @@ public class SearchFragment extends Fragment {
         buttonSearch = view.findViewById(R.id.button_search);
         databaseHelper = new DatabaseHelper(getActivity());
 
-        // Hiển thị tất cả khách hàng khi fragment được khởi tạo
+        // Display all customers when the fragment is initialized
         displayAllCustomers();
 
-        // Thêm listener cho nút tìm kiếm
+        // Add listener for the search button
         buttonSearch.setOnClickListener(v -> performSearch());
-        buttonSearchImage.setOnClickListener(v -> performSearch());
         return view;
 
     }
@@ -61,24 +59,24 @@ public class SearchFragment extends Fragment {
     private void performSearch() {
         String query = editTextSearch.getText().toString().trim();
         if (query.isEmpty()) {
-            Toast.makeText(getActivity(), "Bạn chưa nhập gì để tìm kiếm", Toast.LENGTH_SHORT).show();
-            return; // Dừng thực hiện nếu không có gì để tìm kiếm
+            Toast.makeText(getActivity(), "You haven't entered anything to search", Toast.LENGTH_SHORT).show();
+            return; // Stop if there is nothing to search
         }
 
         Cursor cursor = null;
-        // Kiểm tra xem có chọn CheckBox nào không
+        // Check if any CheckBox is selected
         if (checkboxSearchName.isChecked() && checkboxSearchAddress.isChecked()) {
-            // Tìm kiếm theo cả tên và địa chỉ
+            // Search by both name and address
             cursor = databaseHelper.searchCustomersByNameAndAddress(query);
         } else if (checkboxSearchName.isChecked()) {
-            // Tìm kiếm theo tên
+            // Search by name
             cursor = databaseHelper.searchCustomersByName(query);
         } else if (checkboxSearchAddress.isChecked()) {
-            // Tìm kiếm theo địa chỉ
+            // Search by address
             cursor = databaseHelper.searchCustomersByAddress(query);
         } else {
-            // Nếu không chọn CheckBox nào, thông báo
-            Toast.makeText(getActivity(), "Bạn chưa chọn tùy chọn tìm kiếm", Toast.LENGTH_SHORT).show();
+            // If no CheckBox is selected, show a message
+            Toast.makeText(getActivity(), "You haven't selected a search option", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -90,15 +88,15 @@ public class SearchFragment extends Fragment {
                         getActivity(),
                         R.layout.list_item,
                         cursor,
-                        new String[]{"_id","NAME","ADDRESS"},
-                        new int[]{R.id.textview_id,R.id.textview_name, R.id.textview_address},
+                        new String[]{"_id", "NAME", "ADDRESS"},
+                        new int[]{R.id.textview_id, R.id.textview_name, R.id.textview_address},
                         0);
 
                 listViewResults.setAdapter(adapter);
-                Toast.makeText(getActivity(), "Tìm thấy " + resultCount + " khách hàng", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Found " + resultCount + " customers", Toast.LENGTH_SHORT).show();
             } else {
                 listViewResults.setAdapter(null);
-                Toast.makeText(getActivity(), "Không tìm thấy khách hàng nào", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "No customers found", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -110,15 +108,17 @@ public class SearchFragment extends Fragment {
                     getActivity(),
                     R.layout.list_item,
                     cursor,
-                    new String[]{"_id","NAME","ADDRESS"},
-                    new int[]{R.id.textview_id,R.id.textview_name, R.id.textview_address},
+                    new String[]{"_id", "NAME", "ADDRESS"},
+                    new int[]{R.id.textview_id, R.id.textview_name, R.id.textview_address},
                     0);
 
             listViewResults.setAdapter(adapter);
         } else {
-            Toast.makeText(getActivity(), "Không tìm thấy khách hàng nào", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No customers found", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
     public void onPause() {
         super.onPause();
         FloatingActionButton fab = requireActivity().findViewById(R.id.fab);

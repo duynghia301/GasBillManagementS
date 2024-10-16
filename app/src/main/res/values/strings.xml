@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gas Bill Management G14</string>
+    <string name="app_name">Gas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">GAS BILL MANAGEMENT</string>
@@ -10,13 +10,13 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_task">Schedude</string>
-    <string name="menu_customer">Customer</string>
+    <string name="menu_customer">Customer Details</string>
     <string name="menu_list_customer">Customer List</string>
     <string name="gas">Update Gas Price </string>
     <string name="search">Search</string>
     <string name="addCustomer">Add Customer</string>
     <string name="menu_settings">Settings</string>"
-    <string name="editCustomer">Edit Customer</string>
+    <string name="editCustomer">Update Customer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 

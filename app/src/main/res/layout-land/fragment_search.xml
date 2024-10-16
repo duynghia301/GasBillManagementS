@@ -8,13 +8,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <EditText
             android:id="@+id/edittext_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:hint="Search Customers"
             android:padding="8dp"
             android:paddingStart="12dp"
@@ -22,59 +23,45 @@
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="12dp"
             android:background="@drawable/edittext_background" />
-    </LinearLayout>
-
-    <!-- TextView for search criteria -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search by:"
-        android:textSize="12sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="-3dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3" >
 
         <CheckBox
             android:id="@+id/checkbox_search_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="Name"
-            android:gravity="center"
-            android:layout_marginRight="16dp"/>
+            android:gravity="left|center" />
 
         <CheckBox
             android:id="@+id/checkbox_search_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="Address"
-            android:gravity="center"/>
+            android:gravity="left|center" />
 
         <Button
             android:id="@+id/button_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Search"
-            />
+            android:layout_weight="0.5"
+            android:text="Search" />
     </LinearLayout>
+
+    <!-- TextView for search results label -->
     <TextView
         android:id="@+id/textview_results_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search Results:"
         android:textSize="12sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="-3dp" />
+        android:layout_marginTop="8dp"
+      />
+
     <ListView
         android:id="@+id/listview_results"
         android:layout_width="match_parent"
-        android:layout_height="511dp"
-        android:layout_marginTop="8dp" />
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1" />
 </LinearLayout>

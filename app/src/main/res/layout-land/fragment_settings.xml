@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.settings.SettingsFragment">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gasbgg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <!-- Cột trái -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Switch
+                android:id="@+id/switch_show_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show Address"
+                android:padding="16dp" />
+
+            <Switch
+                android:id="@+id/switch_show_gas_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show Gas Level Type"
+                android:layout_marginTop="8dp"
+                android:padding="16dp" />
+
+        </LinearLayout>
+
+        <!-- Cột phải -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Switch
+                android:id="@+id/switch_show_used_num_gas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show Used Gas"
+                android:padding="16dp" />
+
+            <Switch
+                android:id="@+id/switch_show_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show Price"
+                android:layout_marginTop="8dp"
+                android:padding="16dp" />
+
+            <Switch
+                android:id="@+id/switch_play_music"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Play Music"
+                android:layout_marginTop="8dp"
+                android:padding="16dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

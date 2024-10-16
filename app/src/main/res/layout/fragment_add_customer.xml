@@ -10,26 +10,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên khách hàng:"
+        android:text="Customer Name:"
         android:textSize="16sp"
         android:layout_marginBottom="4dp" />
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
-        android:hint="Nhập tên khách hàng"
+        android:hint="Enter customer name"
         android:layout_height="60dp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:drawableStart="@drawable/custom_persom_icom"
         android:drawablePadding="12dp"
-        android:background="@drawable/custom_input"
-        />
+        android:background="@drawable/custom_input" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ngày sinh:"
+        android:text="Date of Birth:"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp" />
@@ -42,7 +41,7 @@
         <EditText
             android:id="@+id/et_date_of_birth"
             android:layout_width="0dp"
-            android:hint="Chọn ngày sinh"
+            android:hint="Select date of birth"
             android:layout_height="60dp"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -51,35 +50,31 @@
             android:background="@drawable/custom_input"
             android:focusable="false"
             android:layout_weight="1" />
-
-
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Địa chỉ:"
+        android:text="Address:"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="4dp"
-        />
+        android:layout_marginBottom="4dp" />
 
     <EditText
         android:id="@+id/et_address"
         android:layout_width="match_parent"
-        android:hint="Nhập địa chỉ"
+        android:hint="Enter address"
         android:layout_height="60dp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:drawableStart="@drawable/custom_location_icon"
         android:drawablePadding="12dp"
-        android:background="@drawable/custom_input"/>
-
+        android:background="@drawable/custom_input" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Số lượng gas đã sử dụng:"
+        android:text="Gas usage amount:"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp" />
@@ -87,20 +82,19 @@
     <EditText
         android:id="@+id/et_used_num_gas"
         android:layout_width="match_parent"
-        android:hint=" Nhập số lượng gas"
+        android:hint="Enter gas amount"
         android:inputType="number"
         android:layout_height="60dp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:drawableStart="@drawable/custom_usedgas_icom"
         android:drawablePadding="12dp"
-        android:background="@drawable/custom_input"/>
-
+        android:background="@drawable/custom_input" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chọn cấp gas:"
+        android:text="Select gas level:"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp" />
@@ -127,6 +121,6 @@
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu"
+        android:text="Save"
         android:layout_marginTop="16dp" />
 </LinearLayout>

@@ -5,15 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.gasbillmanagements.database.DatabaseHelper;
 import com.example.gasbillmanagements.ultils.MusicPlayer;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
@@ -32,14 +34,13 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-
     //Music
     private MusicPlayer musicPlayerService;
     private boolean isBound = false;
     private static final String PREFS_NAME = "MusicSettings";
     private static final String PREF_MUSIC_ON = "music_on";
     //music
-
+//    private BottomAppBar bottomAppBar;
 
 
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        myDB = new DatabaseHelper(this);
 
 //// Thêm dữ liệu vào bảng gas_level_type
 //        databaseHelper.insertGasLevelType("Level1", 1000, 50, 1.5f);
@@ -62,12 +64,13 @@ public class MainActivity extends AppCompatActivity {
 //        databaseHelper.insertCustomer("Komal", "202403", "MP", 4500, 1);
 
 
-        Intent intent = new Intent(this, MusicPlayer.class);
-        startService(intent);
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+//        bottomAppBar = binding.appBarMain.bottomAppBar;
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         binding.appBarMain.fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        binding.appBarMain.fab.setOnClickListener(view -> navigateTo(R.id.nav_search));
+        binding.appBarMain.fab1.setOnClickListener(view -> navigateTo(R.id.nav_add));
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -155,6 +160,18 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//
+//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            // Ẩn BottomAppBar
+//            bottomAppBar.setVisibility(View.GONE);
+//        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            // Hiện BottomAppBar
+//            bottomAppBar.setVisibility(View.VISIBLE);
+//        }
+//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -178,7 +195,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    private void navigateTo(int destinationId) {
+        try {
+            NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+            navController.navigate(destinationId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

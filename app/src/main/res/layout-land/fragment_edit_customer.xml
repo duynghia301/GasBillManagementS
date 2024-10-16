@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.customer.EditCustomerFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="4"
+            android:orientation="horizontal">
+
+            <!-- Customer Name and Date of Birth Row -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customer Name:"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="Enter customer name"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:drawableStart="@drawable/custom_persom_icom"
+                    android:drawablePadding="12dp"
+                    android:background="@drawable/custom_input" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth:"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/et_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="Select date of birth"
+                    android:drawableStart="@drawable/custom_date_icon"
+                    android:background="?android:attr/editTextBackground"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="false" />
+            </LinearLayout>
+
+            <!-- Address and Gas Usage Amount Row -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="Enter address"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:drawableStart="@drawable/custom_location_icon"
+                    android:drawablePadding="12dp"
+                    android:background="@drawable/custom_input" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gas usage amount:"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/et_used_num_gas"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="Enter gas amount"
+                    android:inputType="number"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:drawableStart="@drawable/custom_usedgas_icom"
+                    android:drawablePadding="12dp"
+                    android:background="@drawable/custom_input" />
+            </LinearLayout>
+        </GridLayout>
+
+        <!-- Gas Level RadioGroup -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select gas level:"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_gas_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_level_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Level 1" />
+
+            <RadioButton
+                android:id="@+id/radio_level_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Level 2" />
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_marginTop="16dp" />
+        </RadioGroup>
+
+
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+
+    </LinearLayout>
+</ScrollView>

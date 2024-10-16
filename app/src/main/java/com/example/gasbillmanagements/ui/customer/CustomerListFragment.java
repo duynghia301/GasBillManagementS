@@ -31,7 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class CustomerListFragment extends Fragment {
-
+    private FloatingActionButton fab;
     private EditText editTextSearch;
     private ListView listView;
     private DatabaseHelper databaseHelper;
@@ -152,6 +152,13 @@ public class CustomerListFragment extends Fragment {
         FloatingActionButton fab1 = requireActivity().findViewById(R.id.fab1);
         fab1.setVisibility(View.GONE);
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        FloatingActionButton fab1 = requireActivity().findViewById(R.id.fab1);
+        fab1.setVisibility(View.VISIBLE);
+    }
+
 
 }
 
