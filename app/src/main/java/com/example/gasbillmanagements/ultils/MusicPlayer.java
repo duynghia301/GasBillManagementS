@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import com.example.gasbillmanagements.R;
 
-
 public class MusicPlayer extends Service {
     private final IBinder binder = new LocalBinder();
     private MediaPlayer mediaPlayer;
+    private int currentPosition = 0; // Biến lưu vị trí phát hiện tại
 
     public class LocalBinder extends Binder {
         public MusicPlayer getService() {
@@ -33,14 +33,18 @@ public class MusicPlayer extends Service {
     }
 
     public void playMusic() {
-        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
-            mediaPlayer.start();
+        if (mediaPlayer != null) {
+            if (!mediaPlayer.isPlaying()) {
+                mediaPlayer.seekTo(currentPosition); // Thiết lập lại vị trí phát
+                mediaPlayer.start();
+            }
         }
     }
 
     public void stopMusic() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.pause(); // Use pause instead of stop
+            currentPosition = mediaPlayer.getCurrentPosition(); // Lưu vị trí phát hiện tại
+            mediaPlayer.pause();
         }
     }
 

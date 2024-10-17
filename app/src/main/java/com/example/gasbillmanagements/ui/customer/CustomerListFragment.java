@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -36,17 +37,29 @@ public class CustomerListFragment extends Fragment {
     private ListView listView;
     private DatabaseHelper databaseHelper;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_list, container, false);
-        FloatingActionButton fab1 = requireActivity().findViewById(R.id.fab1);
-        fab1.setVisibility(View.VISIBLE);
+
+
+
+
         editTextSearch = view.findViewById(R.id.edittext_search);
         listView = view.findViewById(R.id.listview);
+        // Tạo ViewModel
 
+        if (savedInstanceState != null) {
+            String searchQuery = savedInstanceState.getString("search_query");
+            if (searchQuery != null) {
+                editTextSearch.setText(searchQuery);
+                performSearch(searchQuery);
+            }
+        }
         databaseHelper = new DatabaseHelper(getActivity());
+
 
         // Hiển thị tất cả khách hàng khi fragment được khởi tạo
         displayAllCustomers();
@@ -156,7 +169,7 @@ public class CustomerListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         FloatingActionButton fab1 = requireActivity().findViewById(R.id.fab1);
-        fab1.setVisibility(View.VISIBLE);
+        fab1.setVisibility(View.GONE);
     }
 
 

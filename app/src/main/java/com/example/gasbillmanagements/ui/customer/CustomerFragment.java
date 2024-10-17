@@ -23,12 +23,15 @@ import com.example.gasbillmanagements.R;
 import com.example.gasbillmanagements.database.DatabaseHelper;
 import com.example.gasbillmanagements.ui.settings.OnSettingsChangeListener;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CustomerFragment extends Fragment implements OnSettingsChangeListener {
     private int customerId;
     private DatabaseHelper databaseHelper;
+
 
     private TextView tvName;
     private TextView tvAddress;
@@ -37,6 +40,7 @@ public class CustomerFragment extends Fragment implements OnSettingsChangeListen
     private TextView tvBirth;
     private TextView tvPrice;
     private List<Integer> customerIds;
+
 
     private static final String PREFS_NAME = "MusicSettings";
 
@@ -62,6 +66,10 @@ public class CustomerFragment extends Fragment implements OnSettingsChangeListen
         tvGasLevel = view.findViewById(R.id.tv_gas_level);
         tvBirth = view.findViewById(R.id.tv_birth);
         tvPrice = view.findViewById(R.id.tv_price);
+
+
+
+
 
         // Khôi phục trạng thái hiển thị từ SharedPreferences
         setVisibilityFromPreferences();
@@ -152,14 +160,15 @@ public class CustomerFragment extends Fragment implements OnSettingsChangeListen
 
                     // Tính toán PRICE
                     float price = calculatePrice(usedNumGasValue, unitPrice, maxNumGas, rate);
-
+                    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                    String formattedPrice = numberFormat.format(price) + " VND";
                     // Hiển thị thông tin
                     tvName.setText(name);
                     tvAddress.setText(address);
                     tvBirth.setText(cursor.getString(cursor.getColumnIndexOrThrow("YYYYMM")));
                     tvUsedNumGas.setText(String.valueOf(usedNumGasValue));
                     tvGasLevel.setText(String.valueOf(gasLevelTypeId));
-                    tvPrice.setText(String.valueOf(price));
+                    tvPrice.setText(formattedPrice);
 
                 } else {
                     Toast.makeText(getActivity(), "Customer not found", Toast.LENGTH_SHORT).show();

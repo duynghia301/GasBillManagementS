@@ -5,16 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
+
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.gasbillmanagements.database.DatabaseHelper;
 import com.example.gasbillmanagements.ultils.MusicPlayer;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -40,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "MusicSettings";
     private static final String PREF_MUSIC_ON = "music_on";
     //music
-//    private BottomAppBar bottomAppBar;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         myDB = new DatabaseHelper(this);
@@ -76,26 +74,33 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 try {
                     NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
-                    navController.navigate(R.id.nav_search);
+                    int currentDestinationId = navController.getCurrentDestination() != null
+                            ? navController.getCurrentDestination().getId()
+                            : -1;
+
+                    if (currentDestinationId != R.id.nav_search) {
+                        navController.navigate(R.id.nav_search);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        binding.appBarMain.fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
-                    navController.navigate(R.id.nav_add);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        binding.appBarMain.fab1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                try {
+//                    NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+//                    navController.navigate(R.id.nav_add);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
         binding.appBarMain.fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,14 +145,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        binding.appBarMain.fab.setOnClickListener(view -> navigateTo(R.id.nav_search));
-        binding.appBarMain.fab1.setOnClickListener(view -> navigateTo(R.id.nav_add));
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
         // Cấu hình thanh điều hướng
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,R.id.nav_settings, R.id.nav_search, R.id.nav_add,R.id.nav_gas,R.id.nav_task,R.id.nav_customer,R.id.nav_ListCustomer)
+                R.id.nav_home,R.id.nav_settings, R.id.nav_search, R.id.nav_add,R.id.nav_gas,R.id.nav_customer,R.id.nav_ListCustomer)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -160,18 +164,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//
-//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            // Ẩn BottomAppBar
-//            bottomAppBar.setVisibility(View.GONE);
-//        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            // Hiện BottomAppBar
-//            bottomAppBar.setVisibility(View.VISIBLE);
-//        }
-//    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -233,9 +226,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (musicPlayerService != null && getMusicSetting()) {
-            musicPlayerService.playMusic();
+            musicPlayerService.playMusic(); // Tiếp tục phát nhạc nếu cài đặt đang bật
         }
     }
+
 
     @Override
     protected void onPause() {
@@ -271,9 +265,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Music
-
-
-
 
 
 
